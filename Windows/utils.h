@@ -2,12 +2,15 @@
 // Licensed under the terms of the GNU GPL, version 3
 // http://www.gnu.org/licenses/gpl-3.0.txt
 
+#include <stdint.h>
 #include <string.h>
 
-typedef unsigned long long u64;
-typedef unsigned int   u32;
-typedef unsigned short u16;
-typedef unsigned char  u8;
+#include "boolean.h"
+
+typedef uint64_t u64;
+typedef uint32_t u32;
+typedef uint16_t u16;
+typedef uint8_t u8;
 
 u16 se16(u16 i);
 u32 se32(u32 i);

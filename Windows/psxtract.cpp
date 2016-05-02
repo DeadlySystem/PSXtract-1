@@ -1,6 +1,7 @@
 // Copyright (C) 2014       Hykem <hykem@hotmail.com>
 // Licensed under the terms of the GNU GPL, version 3
 // http://www.gnu.org/licenses/gpl-3.0.txt
+#include <sys/stat.h>
 
 #include "psxtract.h"
 
@@ -932,30 +933,30 @@ int main(int argc, char **argv)
 	printf("Unpacking PBP %s...\n", input_filename);
 
 	// Setup a new directory to output the unpacked contents.
-	_mkdir("PBP");
-	_chdir("PBP");
+	mkdir("PBP", 0755);
+	chdir("PBP");
 
 	// Unpack the EBOOT.PBP file.
 	if (unpack_pbp(input))
 	{
 		printf("ERROR: Failed to unpack %s!", input_filename);
-		_chdir("..");
-		_rmdir("PBP");
+		chdir("..");
+		rmdir("PBP");
 		return -1;
 	}
 	else
 		printf("Successfully unpacked %s!\n\n", input_filename);
 
 	// Change the directory back.
-	_chdir("..");
+	chdir("..");
 
 	// Make a directory for CD-ROM images if required.
 	if (conv)
-		_mkdir("CDROM");
+		mkdir("CDROM", 0755);
 
 	// Make a new directory for the ISO data.
-	_mkdir("ISO");
-	_chdir("ISO");
+	mkdir("ISO", 0755);
+	chdir("ISO");
 
 	// Locate DATA.PSAR.
 	FILE* psar = fopen("../PBP/DATA.PSAR", "rb");
@@ -1009,7 +1010,7 @@ int main(int argc, char **argv)
 		decrypt_single_disc(psar, psar_size, startdat_offset, pgd_key, conv);
 
 	// Change the directory back.
-	_chdir("..");
+	chdir("..");
 
 	// Clean up.
 	fclose(psar);

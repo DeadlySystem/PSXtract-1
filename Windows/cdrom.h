@@ -12,6 +12,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "boolean.h"
+
 // Position and size of individual elements in a CD sector.
 #define SECTOR_SIZE                    2352
 #define BOOTLOADER_SECTORS             16

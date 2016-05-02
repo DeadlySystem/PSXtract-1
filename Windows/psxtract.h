@@ -2,9 +2,12 @@
 // Licensed under the terms of the GNU GPL, version 3
 // http://www.gnu.org/licenses/gpl-3.0.txt
 
+#ifdef _WIN32
 #define _CRT_SECURE_NO_WARNINGS
-
 #include <direct.h>
+#else
+#include <unistd.h>
+#endif
 
 #include "cdrom.h"
 #include "lz.h"
